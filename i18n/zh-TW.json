@@ -1,0 +1,14 @@
+{
+  "_comment": "介面字串。與 text.zh（原文對譯）及 notes/（譯者補充）皆無關——三者職責不同，不得混用。工項：WBS T1.4",
+  "app.title": "CR-166536 通用傾轉旋翼飛行模擬數學模型",
+  "lang.en": "僅英文",
+  "lang.zh": "僅中文",
+  "lang.both": "對照",
+  "status.draft": "草稿",
+  "status.reviewed": "已核對",
+  "status.verified": "已驗證",
+  "scan.compare": "對照原文",
+  "scan.fullPage": "檢視整頁",
+  "note.label": "譯註",
+  "search.placeholder": "檢索公式、符號、敘述…"
+}

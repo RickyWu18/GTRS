@@ -1,0 +1,14 @@
+{
+  "_comment": "UI strings only. Unrelated to text.en (source transcription) and notes/ (translator commentary). Task: WBS T1.4",
+  "app.title": "CR-166536 Generic Tilt-Rotor Flight Simulation Model",
+  "lang.en": "English only",
+  "lang.zh": "Chinese only",
+  "lang.both": "Side by side",
+  "status.draft": "Draft",
+  "status.reviewed": "Reviewed",
+  "status.verified": "Verified",
+  "scan.compare": "Compare with scan",
+  "scan.fullPage": "View full page",
+  "note.label": "Translator's note",
+  "search.placeholder": "Search equations, symbols, text…"
+}

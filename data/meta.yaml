@@ -1,0 +1,154 @@
+# 文件後設資料、頁碼對照、掃描規格
+# 依據：計畫書 5.2、5.8.7、1.3
+
+schema_version: 1          # 僅於破壞性變更時遞增（計畫書 4.2 約束三）
+
+document:
+  id: CR-166536
+  title: A Mathematical Model for Real Time Flight Simulation of a Generic Tilt-Rotor Aircraft
+  author: Ferguson, S. W.
+  year: 1988
+  source_url: https://rotorcraft.arc.nasa.gov/Publications/files/CR-166536_882.pdf
+  pdf_pages: 538             # 實測（W0.1）；計畫書所稱「約 300 頁」為推定，不採
+  stated_page_count: 533     # Report Documentation Page 欄位 21 自述值
+  performing_org: "Systems Technology, Inc. — STI TR-1195-2"
+  contract: NAS2-11317
+  text_layer: none           # pdffonts 僅一未內嵌 Courier；538 頁中僅 p.537 有文字物件
+
+# ─────────────────────────────────────────────────────────────
+# 授權標示　W0.2
+# 不得以「NASA CR 皆為公有領域」之通則推定（計畫書 1.3）。以下三項均為查證結果。
+#
+# 一、distribution statement
+#   出處 pdf_page 537（Report Documentation Page）欄位 18；欄位 19／20 之
+#   Security Classification 均為 UNCLASSIFIED。
+#
+# 二、Bell 版權標記
+#   全本未見任何版權聲明（封面 pdf 1、書名頁 pdf 3、Report Documentation Page
+#   pdf 537、前言 pdf 7–8 均已逐頁檢視）。
+#   但有 28 頁帶有 Bell 報告編號 301-099-001。該編號不是版權標記，其意義由正文
+#   自行界定（印刷頁 2 ＝ pdf 16）：
+#     "All pages from the original BHT mathematical model report (Ref. 1) which
+#      remain unchanged are presented in this report with the Bell report number,
+#      301-099-001, located in the lower left-hand corner. New or corrected pages
+#      are identified by the STI report number, TR-1195-2."
+#   即該編號標示「此頁原樣取自 BHT 原報告」。原模型係 BHT 於 NASA 合約
+#   NAS2-6599 下開發（摘要，pdf 537 欄位 16）。
+#
+#   頁尾編號全本掃描結果（tools/footer_scan.py，依字串寬度分群後抽樣目視確認
+#   11 頁，無誤判）：
+#     301-099-001           28 頁 ← BHT 原件，全數位於附錄 A
+#     TR-1195-2 (Rev. A)   422 頁
+#     TR-1195-2             61 頁
+#     無頁尾或無法分類       27 頁（含封面、空白頁、全黑的 pdf 11、pdf 537）
+#
+# 三、圖表第三方來源標註
+#   正文 18 幅圖（List of Figures，pdf 12–13）已逐幅檢視圖說，無來源標註、
+#   無版權符號，圖說文字與目錄一致。圖 7（pdf 37）圖例區分 "Flight Data" 與
+#   "GTRS Data"，屬資料來源說明，非第三方著作標示。
+#   附錄內之圖未逐幅檢視，但其來源已由上述頁尾編號逐頁標定，故不需另行推定。
+#
+#   註：圖表為橫向印刷，且旋轉方向兩種都有（圖 2–7 與圖 8–18 相反），
+#   不可假設單一旋轉方向（影響 F3 呈現與 T3 數化）。
+# ─────────────────────────────────────────────────────────────
+license:
+  distribution_statement: "Unclassified - Unlimited"   # pdf_page 537 欄位 18
+  bell_copyright_mark: "no"        # 無版權聲明；另見上述 301-099-001 之說明
+  third_party_figures: "no"        # 正文 18 幅圖均無來源標註
+  bht_original_pages: [81, 125, 189, 190, 198, 206, 207, 211, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 259, 262, 265]
+  verified_by: "Ricky Wu"
+  verified_on: 2026-09-24
+
+# ─────────────────────────────────────────────────────────────
+# 頁碼對照　W0.5 初稿（實測）
+#
+# 取得方式：頁尾條帶拼版目視判讀（tools/strip_sheet.py --band footer）。
+# 各區間的 pdf_start 與 count 均由直接觀察交界頁得到，非推算。
+# 已核對的取樣點：7,8,9,10,12,13,14,15,16,62,64,66,67,69,70,100,150,200,250,
+#   300,349,350,351,352,400,450,460,470,480,487,494,500,530,536
+# 全部取樣點皆與各區間的線性偏移量相符（正文 +14、A +68、B +350、C +472、D +494）。
+# 尚未做的是每 10 頁一次的密集掃描，用以排除區間內部的插頁漂移——留待 W3.1。
+#
+# label_format: none 者為原文本身無印刷頁碼之頁面，非漏填。
+# 不推定 pdf 5、6 為 i、ii：原文該二頁無頁碼，據實記為無編碼（計畫書不推定原則）。
+# ─────────────────────────────────────────────────────────────
+page_map:
+  - kind: front_matter
+    label_format: none
+    pdf_start: 1
+    count: 6
+    note: "封面、書名頁、空白頁；原文無印刷頁碼"
+
+  - kind: front_matter
+    label_format: roman
+    first_label: "iii"      # 原文前言自 iii 起編
+    pdf_start: 7
+    count: 8                # iii – x（其中 vii ＝ pdf 11，來源整頁全黑）
+
+  - kind: body
+    label_format: arabic
+    first_label: "1"
+    pdf_start: 15
+    count: 53               # 1 – 53
+
+  - kind: divider
+    label_format: none
+    pdf_start: 68
+    count: 1                # 附錄 A 分隔頁
+
+  - kind: appendix
+    label_format: arabic
+    label_prefix: "A-"
+    pdf_start: 69
+    count: 282              # A-1 – A-282　各 SUBSYSTEM 之方程式，本書主體
+
+  - kind: appendix
+    label_format: arabic
+    label_prefix: "B-"
+    pdf_start: 351
+    count: 122              # B-1 – B-122
+
+  - kind: appendix
+    label_format: arabic
+    label_prefix: "C-"
+    pdf_start: 473
+    count: 22               # C-1 – C-22　含 FORTRAN 變數名之常數表
+
+  - kind: appendix
+    label_format: arabic
+    label_prefix: "D-"
+    pdf_start: 495
+    count: 42               # D-1 – D-42　符號說明列表
+
+  - kind: back_matter
+    label_format: none
+    pdf_start: 537
+    count: 2                # Report Documentation Page ＋ 空白頁
+
+# ─────────────────────────────────────────────────────────────
+# 掃描影像規格　W0.6 抽樣後回填
+# 全部欄位填妥前不得開始批次轉檔（WBS W1.3）。
+# deskew / crop / rotate 一旦中途變更，全本既有 bbox 座標全部作廢。
+#
+# 前提：來源 PDF 的 538 頁中，536 頁已是 1-bit 雙階 PNG（6600×5088，恰為
+# 600 dpi，以旋轉矩陣置於直向頁），另 2 頁為 300 dpi 8-bit JPEG。
+# 二值化在 2011 年製作此 PDF 時即已完成，**本專案無灰階母本可用**，
+# 故 method 非「我們採取的作法」而是「來源既成事實」，binarize_algo 無對象可施。
+# 連帶：WBS W1.4「例外頁改以灰階重轉」對該 536 頁不可行。
+# ─────────────────────────────────────────────────────────────
+scan_spec:
+  method: bilevel-from-source   # 沿用來源雙階，不另行二值化
+  dpi: 600                      # 等同來源原生解析度，無重新取樣
+  format: webp-lossless         # 全本約 75 MB；線稿用有損編碼體積反而漲 4.4 倍
+  binarize_algo: none
+  deskew: false                 # 抽樣 10 頁中 7 頁為 0.00°，最差 0.90°；
+                                # 對 1-bit 影像重新取樣不是灰階化就是再二值化，收益不抵損失
+  crop: none                    # 裝訂孔黑點壓在頁緣（墨界 0.000–0.998），
+                                # auto-margin 會逐頁不同，使相對 bbox 在頁間不可比
+  rotate: none
+  exceptions: [1, 11, 537]      # 1、537：300 dpi 8-bit JPEG，走另一路徑
+                                # 11：來源整頁全黑，內容不可回復，待另尋來源或標 illegible
+  decided_by: "Ricky Wu"
+  decided_on: 2026-09-16
+  master_location: "source/CR-166536.pdf（本機，未進版控）；600 dpi 母本按需自 PDF 抽出，不另存逐頁檔"
+  master_sha256: a2013a314af5beb0c5e9bc5bbeb26f99be9a8aa63f2ebe07deaaf11d0d44d67d

@@ -1,0 +1,22 @@
+/* 基礎樣式（外殼層，隨時可重寫）
+ * 一律引用 tokens.css 之變數，不寫死數值。
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: var(--sp-8) var(--sp-4);
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+}
+
+#app {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+a { color: var(--c-accent); }

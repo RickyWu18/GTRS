@@ -1,0 +1,17 @@
+# 逐頁處理狀態台帳
+# 依據：計畫書 5.9　│　工項：WBS W1.7（腳本）、W3.5（全本初始化）
+#
+# status 記錄於公式層級，可回答「這條式子核對過了嗎」，但無法回答
+# 「第 137 頁處理過了嗎」。沒有公式的頁面與尚未處理的頁面，在資料中
+# 看起來完全相同——缺少本台帳，漏頁不會被任何機制察覺。
+#
+# 欄位範例：
+#   - pdf_page: 137
+#     state: done                 # untouched | in_progress | done | no_content
+#     equations: 4
+#     note: ""
+#
+# no_content 用於封面、空白頁、純敘述頁，使其與 untouched 明確區分。
+# 本檔可由 tools/ 腳本依 equations/*.yaml 自動初始化，重跑不覆寫人工標註。
+
+[]

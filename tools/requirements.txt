@@ -1,0 +1,21 @@
+# 離線工具鏈相依套件
+# 網站執行路徑不依賴本檔任何套件（計畫書 4.3）。
+#
+# 建議以 uv 建立 .venv（已列入 .gitignore）：
+#   uv venv .venv --python 3.12
+#   uv pip install --python .venv/Scripts/python.exe -r tools/requirements.txt
+
+PyYAML>=6.0
+
+# W0.1／W0.3／W0.6：PDF 解析、逐頁渲染、內嵌影像抽出
+pymupdf>=1.27
+
+# W0.6／W1.3：WebP 無損編碼、影像裁切與拼版（PyMuPDF 不支援 WebP 輸出）
+pillow>=11.0
+
+# 版面切割與 bbox：投影剖面、連通元件
+numpy>=2.0
+
+# 註：公式辨識不走本地模型。來源無文字層，內容轉錄改由 VLM 逐塊讀取，
+# 版面切割則以上列 numpy 的古典方法處理（本機無 GPU，計畫書 7.2 之本地方案不適用）。
+# 一切機器產出一律 status: draft，無例外。

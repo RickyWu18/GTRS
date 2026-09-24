@@ -1,0 +1,18 @@
+# 原始 PDF 與掃描灰階母本不進版控（計畫書 5.8.5；位置記於 data/meta.yaml 之 scan_spec.master_location）
+/source/
+/masters/
+/work/
+*.pdf
+
+# Python 工具鏈（tools/）
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# 編輯器與作業系統
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

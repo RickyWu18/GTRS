@@ -1,0 +1,19 @@
+# 掃描影像以 Git LFS 追蹤（WBS 決議 #2：方案甲 ＋ LFS）
+#
+# 此規則必須在第一次 commit 影像「之前」生效。反向遷移需 `git lfs migrate`
+# 改寫歷史，成本遠高於現在就設定。
+#
+# 注意：GitHub Pages 不提供 LFS 檔案，會回傳 pointer 文字檔而非影像。
+# 部署必須改由 GitHub Actions 執行（WBS W1.2）。若 W1.2 實測失敗，
+# 在尚未 commit 任何影像前移除本行即可退回純方案甲，無沉沒成本。
+scans/*.webp filter=lfs diff=lfs merge=lfs -text
+
+# 文字檔一律以 LF 儲存，避免跨平台 diff 雜訊
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.csv  text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.js   text eol=lf
+*.css  text eol=lf
+*.html text eol=lf

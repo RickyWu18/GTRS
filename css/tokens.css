@@ -1,0 +1,101 @@
+/* 設計代幣
+ * 依據：計畫書 4.2 約束一
+ *
+ * 色彩、字級、間距、圓角集中於此，使視覺調整不觸及結構。
+ * 其他樣式檔一律引用變數，不得寫死數值。
+ */
+
+:root {
+  /* 色彩 — 表面與文字 */
+  --c-bg:           #ffffff;
+  --c-surface:      #f7f7f5;
+  --c-border:       #e0dedb;
+  --c-text:         #1a1a18;
+  --c-text-muted:   #6b6a66;
+
+  /* 色彩 — 強調與連結 */
+  --c-accent:       #1f5f8b;
+  --c-accent-soft:  #e8f0f5;
+
+  /* 色彩 — 轉錄狀態（F11） */
+  --c-draft:        #b8860b;
+  --c-reviewed:     #4a7c9e;
+  --c-verified:     #3a7d44;
+  --c-issue:        #a33a3a;
+
+  /* 色彩 — 譯註區塊（F5，須與原文明顯區隔） */
+  --c-note-bg:      #f2f1ee;
+  --c-note-border:  #c9c6c0;
+
+  /* 字體 */
+  --font-body:  system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --font-mono:  ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* 字級 */
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-lg:   1.125rem;
+  --fs-xl:   1.375rem;
+  --fs-2xl:  1.75rem;
+
+  --lh-tight: 1.3;
+  --lh-base:  1.7;
+
+  /* 間距 */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+
+  /* 圓角與框線 */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --border-w:  1px;
+
+  /* 版面 */
+  --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-bg:          #17181a;
+    --c-surface:     #1f2124;
+    --c-border:      #33363a;
+    --c-text:        #e6e4e0;
+    --c-text-muted:  #9a9894;
+
+    --c-accent:      #7ab4d8;
+    --c-accent-soft: #1c2c36;
+
+    --c-draft:       #d4a53a;
+    --c-reviewed:    #7ab4d8;
+    --c-verified:    #6fae78;
+    --c-issue:       #d97a7a;
+
+    --c-note-bg:     #212326;
+    --c-note-border: #3d4045;
+  }
+}
+
+:root[data-theme="dark"] {
+  --c-bg:          #17181a;
+  --c-surface:     #1f2124;
+  --c-border:      #33363a;
+  --c-text:        #e6e4e0;
+  --c-text-muted:  #9a9894;
+
+  --c-accent:      #7ab4d8;
+  --c-accent-soft: #1c2c36;
+
+  --c-draft:       #d4a53a;
+  --c-reviewed:    #7ab4d8;
+  --c-verified:    #6fae78;
+  --c-issue:       #d97a7a;
+
+  --c-note-bg:     #212326;
+  --c-note-border: #3d4045;
+}

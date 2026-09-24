@@ -1,0 +1,211 @@
+# 章節樹
+# 依據：計畫書 5.1　│　工項：WBS W3.2（前置 W0.3）
+#
+# 來源：原文目錄頁（pdf 9–10 ＝ 印刷 v–vi）與各附錄首頁，以頁面影像目視判讀。
+# status: draft —— 機器／目視產出，尚未逐字對照核對（計畫書 9.5）。
+#
+# printed_page 一律為字串（計畫書 5.2）。pdf_page 由 meta.yaml 之 page_map 偏移量
+# 換算而得（正文 +14、附錄 A +68、B +350、C +472、D +494），未逐條開頁驗證。
+#
+# ⚠ 目錄尾頁（印刷 vii ＝ pdf 11）在來源掃描中整頁全黑，內容不可回復。
+#   第 III 節之後的章節（第 IV 節以降、參考文獻等）因此無法自目錄取得，
+#   須改由正文逐頁判讀補齊。見下方 id: "unknown-tail" 之條目。
+
+- id: "I"
+  kind: section
+  title_en: INTRODUCTION AND BACKGROUND
+  printed_page: "1"
+  pdf_page: 15
+  status: draft
+  children:
+    - id: "I.A"
+      title_en: Restructuring of the Report
+      printed_page: "1"
+      pdf_page: 15
+    - id: "I.B"
+      title_en: Implementation of the Generic Tilt-Rotor Mathematical Model on the VAX 11/780 and Sigma 8/VMS Computers
+      printed_page: "2"
+      pdf_page: 16
+    - id: "I.C"
+      title_en: Validation of the Generic Tilt-Rotor Mathematical Model
+      printed_page: "4"
+      pdf_page: 18
+    - id: "I.D"
+      title_en: Simulation Support
+      printed_page: "5"
+      pdf_page: 19
+
+- id: "II"
+  kind: section
+  title_en: STRUCTURE OF THE MATHEMATICAL MODEL
+  printed_page: "7"
+  pdf_page: 21
+  status: draft
+
+- id: "III"
+  kind: section
+  title_en: A GENERAL DESCRIPTION OF THE MATHEMATICAL MODEL AND INPUT DATA REQUIREMENTS
+  printed_page: "11"
+  pdf_page: 25
+  status: draft
+  # 以下 A–N 即 subsystem 1–19。subsystem 編號同時是 symbols.yaml 之 scope 命名空間
+  # 來源（計畫書 5.4.1，WBS W2.3「scope 直接取 subsystem id，未自行分類」）。
+  children:
+    - id: "III.A"
+      subsystem: 1
+      title_en: "Subsystem 1: Rotor Aerodynamics"
+      printed_page: "11"
+      pdf_page: 25
+      children:
+        - { id: "III.A.1", title_en: Rotor Forces and Moments, printed_page: "11", pdf_page: 25 }
+        - { id: "III.A.2", title_en: Rotor-Induced Velocity, printed_page: "13", pdf_page: 27 }
+        - { id: "III.A.3", title_en: General Input Data Requirements, printed_page: "15", pdf_page: 29 }
+    - id: "III.B"
+      subsystem: 2
+      title_en: "Subsystem 2: Rotor-Induced Velocities (Also Parts of Subsystems 4, 5, 6, and 14)"
+      printed_page: "18"
+      pdf_page: 32
+      children:
+        - { id: "III.B.1", title_en: Model Structure, printed_page: "18", pdf_page: 32 }
+        - { id: "III.B.2", title_en: Input Data Requirements, printed_page: "20", pdf_page: 34 }
+    - id: "III.C"
+      subsystem: 3
+      title_en: "Subsystem 3: Fuselage Aerodynamics"
+      printed_page: "24"
+      pdf_page: 38
+      children:
+        - { id: "III.C.1", title_en: Model Structure, printed_page: "24", pdf_page: 38 }
+        - { id: "III.C.2", title_en: Input Data Requirements, printed_page: "24", pdf_page: 38 }
+    - id: "III.D"
+      subsystem: 4
+      title_en: "Subsystem 4: Wing-Pylon Aerodynamics"
+      printed_page: "24"
+      pdf_page: 38
+      children:
+        - { id: "III.D.1", title_en: Model Structure, printed_page: "24", pdf_page: 38 }
+        - { id: "III.D.2", title_en: Input Data Requirements, printed_page: "26", pdf_page: 40 }
+    - id: "III.E"
+      subsystem: 5
+      title_en: "Subsystem 5: Horizontal Stabilizer Aerodynamics"
+      printed_page: "27"
+      pdf_page: 41
+      children:
+        - { id: "III.E.1", title_en: Model Structure, printed_page: "27", pdf_page: 41 }
+        - { id: "III.E.2", title_en: Input Data Requirements, printed_page: "35", pdf_page: 49 }
+    - id: "III.F"
+      subsystem: 6
+      title_en: "Subsystem 6: Vertical Stabilizer Aerodynamics"
+      printed_page: "35"
+      pdf_page: 49
+      children:
+        - { id: "III.F.1", title_en: Model Structure, printed_page: "35", pdf_page: 49 }
+        - { id: "III.F.2", title_en: Input Data Requirements, printed_page: "38", pdf_page: 52 }
+    - id: "III.G"
+      subsystem: 7
+      title_en: "Subsystem 7: Landing Gear"
+      printed_page: "41"
+      pdf_page: 55
+      children:
+        - { id: "III.G.1", title_en: Model Structure, printed_page: "41", pdf_page: 55 }
+        - { id: "III.G.2", title_en: Input Data Requirements, printed_page: "41", pdf_page: 55 }
+    - id: "III.H"
+      subsystem: 8
+      title_en: "Subsystem 8: Control System"
+      printed_page: "41"
+      pdf_page: 55
+      children:
+        - { id: "III.H.1", title_en: Model Structure, printed_page: "41", pdf_page: 55 }
+        - { id: "III.H.2", title_en: Input Data Requirements, printed_page: "42", pdf_page: 56 }
+    - id: "III.I"
+      subsystem: 9
+      title_en: "Subsystem 9: CG and Inertia"
+      printed_page: "42"
+      pdf_page: 56
+    - id: "III.J"
+      subsystem: [10, 11, 12, 13, 14]
+      title_en: "Subsystems 10 Through 14: Coordinate Transformations and Equations of Motion"
+      printed_page: "43"
+      pdf_page: 57
+    - id: "III.K"
+      subsystem: 15
+      title_en: "Subsystem 15: Flight Environment"
+      printed_page: "43"
+      pdf_page: 57
+    - id: "III.L"
+      subsystem: 16
+      title_en: "Subsystem 16: Pilot's Instrument Panel"
+      printed_page: "43"
+      pdf_page: 57
+    - id: "III.M"
+      subsystem: 17
+      title_en: "Subsystem 17: Rotor Collective Governor"
+      printed_page: "44"
+      pdf_page: 58
+      children:
+        - { id: "III.M.1", title_en: Model Structure, printed_page: "44", pdf_page: 58 }
+        - { id: "III.M.2", title_en: Input Data Requirements, printed_page: "44", pdf_page: 58 }
+    - id: "III.N"
+      subsystem: [18, 19]
+      title_en: "Subsystems 18 and 19: Engines, Fuel, Controls, and Drive System Dynamics"
+      printed_page: "45"
+      pdf_page: 59
+      children:
+        - { id: "III.N.1", title_en: Model Structure, printed_page: "45", pdf_page: 59 }
+        - { id: "III.N.2", title_en: Input Data Requirements, printed_page: "47", pdf_page: 61 }
+
+- id: "unknown-tail"
+  kind: section
+  title_en:
+  printed_page: "48"        # 正文自印刷 48 延續至 53（pdf 62–67）
+  pdf_page: 62
+  status: draft
+  issues:
+    - kind: illegible
+      note: "目錄尾頁（印刷 vii ＝ pdf 11）整頁全黑，第 III 節之後的章節標題無法自目錄取得。
+             正文印刷 48–53（pdf 62–67）之歸屬待逐頁判讀補齊。"
+
+# ── 附錄 ──────────────────────────────────────────────────────
+# 標題取自各附錄首頁（非目錄，因目錄尾頁遺失）。
+
+- id: "APP-A"
+  kind: appendix
+  label_prefix: "A-"
+  title_en: GENERIC TILT-ROTOR SIMULATION MATHEMATICAL MODEL
+  printed_page: "A-1"
+  pdf_page: 69
+  pages: 282                # A-1 – A-282，pdf 69–350；本書主體，依 SUBSYSTEM 分節
+  status: draft
+
+- id: "APP-B"
+  kind: appendix
+  label_prefix: "B-"
+  title_en: INPUT DATA ARRAY FOR THE XV-15 TILT-ROTOR RESEARCH AIRCRAFT
+  printed_page: "B-1"
+  pdf_page: 351
+  pages: 122                # B-1 – B-122，pdf 351–472
+  status: draft
+
+- id: "APP-C"
+  kind: appendix
+  label_prefix: "C-"
+  title_en: SIGMA 8/VMS GENERIC TILT ROTOR MATHEMATICAL MODEL INPUT DATA REQUIREMENTS
+  printed_page: "C-1"
+  pdf_page: 473
+  pages: 22                 # C-1 – C-22，pdf 473–494
+  status: draft
+  issues:
+    - kind: undefined_in_source
+      note: "附錄 C 首頁原文註記：'This section was not revised for Rev. A, because the Sigma 8
+             version of the computer program was not systematically updated to be compatible with
+             the Rev. A mathematical model when this document was completed.'
+             即原文自述本附錄與附錄 A 可能不一致。引用其數值時須保留此警示，不得逕行調和。"
+
+- id: "APP-D"
+  kind: appendix
+  label_prefix: "D-"
+  title_en: COMPREHENSIVE LIST OF SYMBOLS — GENERIC TILT-ROTOR SIMULATION MATHEMATICAL MODEL
+  printed_page: "D-1"
+  pdf_page: 495
+  pages: 42                 # D-1 – D-42，pdf 495–536
+  status: draft
+  note: "全域符號總表。W0.4／W2.3／G3 之主要輸入。"

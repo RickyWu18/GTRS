@@ -1,0 +1,22 @@
+# 符號字典 — 整個專案的基礎設施
+# 依據：計畫書 5.4　│　工項：WBS W2.3–W2.5（G3 前）
+#
+# 原文沒有全書統一的符號表，而是各 subsystem 章節各附一份。
+# scope 不是本專案發明的分類，而是照抄原文的組織方式。
+#
+# 欄位範例：
+#   - key: C_T                    # LaTeX 風格去反斜線與大括號，大小寫不得正規化
+#     scope: rotor                # subsystem id，或 global
+#     latex: "C_T"                # F1 字串取代之實際依據
+#     name_en: thrust coefficient
+#     name_zh: 推力係數
+#     units: "—"                  # 顯示用
+#     dimension: {}               # 選填，機器可讀；無因次以空物件表示
+#     source: nomenclature        # nomenclature | inline | inferred
+#     defined_in: eq-rotor-4-5
+#     fortran: "CT"               # 對應 CR-166535 之變數名（W5.1 批次回填）
+#     notes: ""
+#
+# 禁止為消歧而造原文沒有的 key（如 T_rotor）——消歧一律交由 scope 處理。
+
+[]

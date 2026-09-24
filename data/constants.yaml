@@ -1,0 +1,20 @@
+# 常數值（附錄之單一數值：幾何、慣量、重量）
+# 依據：計畫書 5.6.2、第 10 節　│　工項：WBS W3.3
+#
+# 與符號提示（F1）串接：讀者查詢符號 R 時，除定義與單位外一併顯示
+# 「= 12.5 ft（XV-15）」，使附錄數據與正文推導縫合為單一閱讀體驗。
+#
+# 常數為鍵值對，不是表格資料，故不放 tables/。
+#
+# 欄位範例：
+#   - symbol: R                   # 須存在於 symbols.yaml
+#     value: 12.5
+#     units: "ft"
+#     name_en: rotor radius
+#     name_zh: 旋翼半徑
+#     pdf_page: 256
+#     printed_page: "A-2"         # 字串
+#     applies_to: [XV-15]         # 多構型可並列多筆
+#     status: draft
+
+[]
