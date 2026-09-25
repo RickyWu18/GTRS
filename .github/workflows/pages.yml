@@ -1,0 +1,86 @@
+# GitHub Pages 部署（WBS W1.2／W1.8，風險 R15）
+#
+# 為什麼不能用 GitHub 內建的 branch 部署：
+#   Pages 的 branch 來源不解析 Git LFS，會把 scans/*.webp 當成約 130 bytes 的
+#   pointer 文字檔原樣送出，F3 掃描對照全毀。此為 GitHub 已載明之限制，非設定問題。
+#   唯一路徑是自行以 Actions 取出 LFS 物件後上傳 artifact（決議 #2）。
+#
+# 啟用前置（一次性，需在 GitHub 網頁操作，無法由本檔完成）：
+#   Settings → Pages → Build and deployment → Source 選 "GitHub Actions"
+
+name: Deploy Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# deploy-pages 所需的最小權限集
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 部署不可並行；後到的排隊而非取消，避免站台停在半新半舊的狀態
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # lfs: false —— 先只取 pointer，讓下一步能算出快取 key。
+      # 若在此處直接 lfs: true，物件會在快取命中判斷之前就被拉下來，
+      # 快取即失去意義（W1.8 判準「LFS 物件已在 Actions 快取」）。
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: 計算 LFS 物件清單作為快取 key
+        run: git lfs ls-files --long | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - uses: actions/cache@v4
+        with:
+          path: .git/lfs
+          key: lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: lfs-
+
+      # 快取命中時此步為 no-op，不消耗 LFS 頻寬配額。
+      # 全本影像約 75 MB（W0.6 實測，非 WBS 5.8 所估的 25–45 MB），
+      # 未遷移至計量計費的帳號每月僅 1 GiB，無快取約 13 次建置即用盡。
+      - name: 取出 LFS 物件
+        run: git lfs pull
+
+      - name: 清掉快取用的暫存清單，勿隨站台發布
+        run: rm -f .lfs-assets-id
+
+      # 護欄：若 scans/ 內仍是 pointer 檔就讓建置失敗，
+      # 而不是把壞掉的站台部署上去。R15 的自動偵測手段就這一項。
+      - name: 驗證 scans/ 不含 LFS pointer 檔
+        run: |
+          if [ ! -d scans ] || [ -z "$(find scans -name '*.webp' -print -quit)" ]; then
+            echo "scans/ 尚無 webp（W1.3 未執行），略過本檢查"
+            exit 0
+          fi
+          bad=0
+          for f in $(find scans -name '*.webp'); do
+            if head -c 40 "$f" | grep -q 'git-lfs.github.com/spec'; then
+              echo "::error file=$f::仍為 LFS pointer 檔，非實體影像"
+              bad=1
+            fi
+          done
+          exit $bad
+
+      - uses: actions/configure-pages@v5
+
+      # upload-pages-artifact v3 已內建排除 .git 與 .github
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
