@@ -39,12 +39,11 @@
 
 - pdf_page: 333
   state: untouched
-  issues:
-    - kind: ocr_uncertain
-      note: >-
-        式子上有手寫註記：HP_ENG 上方標 HPCORR，K_1／K_2／K_3 上方分別手寫
-        -1.189（末位判讀不確定）、2.354、-0.16。屬原文內容，非污損。
-        轉錄方式待 W2.2 決定（手寫的原文內容如何進 schema）
+  note: >-
+    式子上有後人手寫註記（HP_ENG 上方標 HPCORR，K_1／K_2／K_3 上方各有一組數值）。
+    依決議 #6 不納入轉錄：手寫非 Ferguson 打字原文，且屬冗餘——K_1–K_3 已由
+    pdf 324（A-256）正式宣告為 subsystem 18 之 Coefficients，權威數值應在附錄 C。
+    手寫內容仍可由 F3 掃描對照看到，資料層不收錄不造成資訊遺失。不計為 issue
 
 - pdf_page: 464
   state: untouched
@@ -56,8 +55,6 @@
 
 - pdf_page: 5
   state: no_content
-  issues:
-    - kind: illegible
-      note: >-
-        書名頁有鋼筆手寫「(817) 473-6820」與「Mansfield, Tx.」，另有網點戳記
-        壓在 SYSTEMS TECHNOLOGY, INC. 之上。非模型內容，記錄以供來源辨識
+  note: >-
+    書名頁有鋼筆手寫電話與地名，另有網點戳記壓在 SYSTEMS TECHNOLOGY, INC. 之上。
+    依決議 #6 不納入轉錄。記錄於此以供來源辨識，不計為 issue
