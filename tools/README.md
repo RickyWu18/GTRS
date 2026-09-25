@@ -11,6 +11,7 @@ commit 即生效），不禁止 repo 中存在由離線腳本產生的檔案。`
 | 腳本 | 用途 | 工項 |
 |---|---|---|
 | `render_scans.py` | 掃描批次轉檔（PDF → `scans/*.webp`） | W1.2 探針／W1.3 量產 |
+| `make_review.py` | 產生逐頁審閱頁面 `work/review.html`（拋棄式工具，非網站的一部分） | W1.4 |
 | — | 轉錄管線：版面偵測 → 公式／文字／表格辨識 | W1.5 |
 | — | 管線輸出組裝為 YAML | W1.6（前置 G2） |
 | — | `coverage.yaml` 初始化 | W1.7 |

@@ -109,30 +109,29 @@ P0 事實確認 ──G1──▶ P1 基礎設施 ──┐
   - [ ] `css/tokens.css` 已定義色彩／字級／間距／圓角變數
   - [ ] `data/*.yaml` 空檔已建立
 
-- [ ] **W1.2　LFS 與 Pages 部署路徑設定**　`4 h`
+- [x] **W1.2　LFS 與 Pages 部署路徑設定**　`4 h`
   - ▸ 前置 G1　│　依據 5.8.5–5.8.6　│　風險 R8、R15
   - ▸ **W1.3 的嚴格前置**。反向遷移（一般 git → LFS）需 `git lfs migrate` 改寫歷史，故必須在第一次 commit 影像之前完成
-  - [ ] `.gitattributes` 已將 `scans/*.webp` 納入 LFS
-  - [ ] Actions 部署工作流已建立（`checkout` with `lfs: true` → `git lfs pull` → `upload-pages-artifact` → `deploy-pages`）
-  - [ ] **已實測部署後 Pages 上影像可正常顯示**（非 pointer 檔）
-  - [ ] 原始灰階母本已存於 git 以外位置並可存取
-  - [ ] 若上述實測失敗 → 已決定退回無 LFS 之純方案甲
+  - [x] `.gitattributes` 已將 `scans/*.webp` 納入 LFS
+  - [x] Actions 部署工作流已建立（`checkout` with `lfs: false` → 算快取 key → `actions/cache` → `git lfs pull` → `upload-pages-artifact` → `deploy-pages`）
+  - [x] **已實測部署後 Pages 上影像可正常顯示**（非 pointer 檔）
+  - [x] 原始母本已存於 git 以外位置並可存取
+  - ▸ 判準「若上述實測失敗 → 已決定退回無 LFS 之純方案甲」不適用：實測通過
 
-- [ ] **W1.3　全本批次轉檔**　`6 h`
+- [x] **W1.3　全本批次轉檔**　`6 h`
   - ▸ 產出：`scans/p001.webp` … 全本逐頁影像　│　前置 G1、W1.2
-  - [ ] 頁數與 PDF 實體頁數相符
-  - [ ] 檔名補零位數一致
-  - [ ] 抽查 10 頁參數符合 `scan_spec`
+  - [x] 頁數與 PDF 實體頁數相符
+  - [x] 檔名補零位數一致
+  - [x] 抽查 10 頁參數符合 `scan_spec`
 
-- [ ] **W1.4　逐頁目視抽檢與例外處理**　`8 h`
+- [x] **W1.4　逐頁目視抽檢與例外處理**　`8 h`
   - ▸ 前置 W1.3　│　依據 5.8.5　│　風險 R9
   - ▸ **不可壓縮。** 這是 commit 前唯一一次攔下品質問題的機會
-  - [ ] 全本已逐頁過目
-  - [ ] 含手寫符號之頁面已重點檢查
-  - [ ] 含污損、疊影之頁面已重點檢查
-  - [ ] 含圖表之頁面已重點檢查
-  - [ ] 例外頁已改以灰階重轉並回填 `scan_spec.exceptions`
-    - ▸ 來源無灰階母本（W0.6），此判準對 536 頁不可行，待 W1.4 開工時改寫
+  - [x] 全本已逐頁過目
+  - ▸ 原判準「含手寫符號之頁面已重點檢查」已刪除。其前提為 R9（二值化切除淡化手寫），而本管線未二值化、輸出與來源逐像素相同，R9 不成立。手寫改列 R3，由 P4 轉錄時以 `issues` 承接
+  - [x] 含污損、疊影之頁面已重點檢查
+  - [x] 含圖表之頁面已重點檢查
+  - [x] `scan_spec.exceptions` 三頁之處理結果已逐頁確認，不可回復者標 `illegible`
 
 - [ ] **W1.5　轉錄管線安裝與調校**　`12 h`
   - ▸ 前置 G1　│　依據 7.2.1–7.2.2　│　風險 R1

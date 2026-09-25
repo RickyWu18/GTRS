@@ -13,5 +13,51 @@
 #
 # no_content 用於封面、空白頁、純敘述頁，使其與 untouched 明確區分。
 # 本檔可由 tools/ 腳本依 equations/*.yaml 自動初始化，重跑不覆寫人工標註。
+#
+# ── issues（頁層級，2026-09-25 W1.4 新增）──────────────────────────
+# state 記錄處理進度，issues 記錄來源品質，兩者正交：一頁可以既「不可判讀」
+# 又「尚未處理」。故不於 state 增設 illegible，改沿用計畫書既有的 issues 機制
+# （kind 允許值與公式層級相同，見 CLAUDE.md）。
+#
+#   - pdf_page: 11
+#     state: no_content
+#     issues:
+#       - kind: illegible
+#         note: "來源整頁全黑，內容不可回復（W0.6）"
+#
+# 本欄為選填。計畫書 5.9 未載此欄，屬 W1.4 期間的追加；因本檔當時為空，
+# 新增不需回填既有資料，故非破壞性變更，schema_version 不遞增。
 
-[]
+# 以下四筆為 W1.4 目視抽檢的人工標註，非腳本產物。W1.7 的初始化腳本重跑時
+# 不得覆寫（見上方說明）。依據：docs/W1.4-逐頁抽檢結果.md
+
+- pdf_page: 11
+  state: no_content
+  issues:
+    - kind: illegible
+      note: "來源整頁全黑，內容不可回復。該頁為目錄尾頁（印刷 vii），需另尋來源"
+
+- pdf_page: 333
+  state: untouched
+  issues:
+    - kind: ocr_uncertain
+      note: >-
+        式子上有手寫註記：HP_ENG 上方標 HPCORR，K_1／K_2／K_3 上方分別手寫
+        -1.189（末位判讀不確定）、2.354、-0.16。屬原文內容，非污損。
+        轉錄方式待 W2.2 決定（手寫的原文內容如何進 schema）
+
+- pdf_page: 464
+  state: untouched
+  issues:
+    - kind: illegible
+      note: >-
+        圖表格線於來源即已散失，僅餘散點碎屑；曲線、座標軸與刻度標籤完好。
+        影響 T3 曲線數化的參考基準。經人工核對確認為來源既有，非本專案轉檔造成
+
+- pdf_page: 5
+  state: no_content
+  issues:
+    - kind: illegible
+      note: >-
+        書名頁有鋼筆手寫「(817) 473-6820」與「Mansfield, Tx.」，另有網點戳記
+        壓在 SYSTEMS TECHNOLOGY, INC. 之上。非模型內容，記錄以供來源辨識
