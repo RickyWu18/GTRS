@@ -2,27 +2,39 @@
 # 依據：計畫書 5.5　│　工項：WBS W5.2
 #
 # ── 本檔目前的狀態 ────────────────────────────────────────────
-# 骨架取自 W0.3／W0.4 的結構盤點：附錄 A（pdf 69–350）依 subsystem 分為 27 個區塊，
-# 各區塊的編號、原文名稱與頁範圍均為實測。`inputs`／`outputs`／`states`／`couples_to`
-# 一律留空——那些內容在各區塊的「方框摘要頁」上（見 io_summary_pages），
-# 尚未轉錄。留空不代表該模組無耦合。
+# 骨架取自 W0.3／W0.4 的結構盤點，並於 2026-09-25（W2.2 期間）全面重新驗證。
+# 附錄 A（pdf 69–350）依 subsystem 分為 29 個區塊，編號、原文名稱與頁範圍均為實測。
+# `inputs`／`outputs`／`states`／`couples_to` 一律留空——那些內容在各區塊的符號表頁上
+# （見 io_summary_pages），尚未轉錄。留空不代表該模組無耦合。
 #
 # status: draft —— 目視判讀，未逐字對照核對（計畫書 9.5）。
+#
+# ── 2026-09-25 重新驗證：三項更正 ─────────────────────────────
+# 驗證方式：以 tools/strip_sheet.py 將 pdf 69–350 全部 282 頁的頁首條帶拼版，
+# 逐頁目視判別頁型。附錄 A 的頁型固定輪替（見 tools/section_scan.py 檔首）：
+#   方框摘要頁 → 符號表頁（頁首左對齊 `SUBSYSTEM NO. n:`）→ 公式頁（頁首置中 `EQUATIONS`）
+#
+# 1. 新增 subsystem 7B（pdf 185–190）。原檔註解已標記「是否另有 7B 未確認」，
+#    此次確認存在：pdf 185 方框頁標題為 `7B  LANDING GEAR (Unused Bell Model)`。
+#    連帶 7A 的範圍由 171–190 更正為 171–184。
+# 2. 新增 subsystem 10f（pdf 266–269，AXES TRANSFORMATION (GROUND REFERENCE DISTANCES)）。
+#    原檔僅列 10a–10e，10e 的範圍 263–269 把 10f 整個吞掉，更正為 263–265。
+# 3. io_summary_pages 全面重算。原值只收了方框頁，漏掉其後無方框的符號表續頁；
+#    29 個 subsystem 全部受影響，合計由 44 頁更正為 134 頁。
+#    例：subsystem 11 原記 [270, 271]，實為 270–274 共 5 頁（275 起才是公式頁）。
 #
 # ── id 的取法 ────────────────────────────────────────────────
 # id 直接採原文的 subsystem 編號（含 `8a`、`10b` 等細分），未自行改寫為語意化名稱，
 # 以符合 WBS W2.3「scope 直接取 subsystem id，未自行分類」。symbols.yaml 的 scope
 # 應使用同一組字串。
 #
-# ── 兩處與正文目錄不一致，據實記錄，未調和 ──────────────────
-# 1. 正文目錄（印刷 v–vi）只列 subsystem 1–19；附錄 A 實際含 subsystem 20
-#    （STABILITY AND CONTROL AUGMENTATION SYSTEM），且有目錄未列的 8a–8d、10a–10e 細分。
-# 2. subsystem 7 在附錄 A 標為 `7A  LANDING GEAR* (Present Sigma 8 Model)`，
-#    帶星號與「現行 Sigma 8 模型」但書，是否另有 7B 未確認。
-# 兩者推測與 Rev. A 增補有關，但原文未說明，故不補全。
+# ── 與正文目錄不一致之處，據實記錄，未調和 ──────────────────
+# 正文目錄（印刷 v–vi）只列 subsystem 1–19；附錄 A 實際含 subsystem 20
+# （STABILITY AND CONTROL AUGMENTATION SYSTEM），且有目錄未列的 7A／7B、8a–8d、
+# 10a–10f 細分。推測與 Rev. A 增補有關，但原文未說明，故不補全。
 #
-# 頁型統計見 work/section_breaks.json（由 tools/section_scan.py 產生）。
 # equation_pages 為「首行置中」的頁數，圖版頁亦會計入，故為上界估計。
+# 此次重新驗證未重算該欄，僅為新增的 7B（3）與 10f（1）填入實測值。
 
 - id: "1"
   name_en: ROTOR AERODYNAMICS
@@ -31,7 +43,7 @@
   pdf_pages: [73, 101]
   printed_pages: ["A-5", "A-33"]
   equation_pages: 19
-  io_summary_pages: [73, 74]
+  io_summary_pages: [73, 74, 75, 76, 77, 78, 79, 80]
   status: draft
 
 - id: "2"
@@ -41,7 +53,7 @@
   pdf_pages: [102, 108]
   printed_pages: ["A-34", "A-40"]
   equation_pages: 3
-  io_summary_pages: [102]
+  io_summary_pages: [102, 103, 104, 105]
   status: draft
 
 - id: "3"
@@ -51,7 +63,7 @@
   pdf_pages: [109, 112]
   printed_pages: ["A-41", "A-44"]
   equation_pages: 1
-  io_summary_pages: [109]
+  io_summary_pages: [109, 110, 111]
   status: draft
 
 - id: "4"
@@ -61,10 +73,10 @@
   pdf_pages: [113, 145]
   printed_pages: ["A-45", "A-77"]
   equation_pages: 18
-  io_summary_pages: [113, 114, 115, 116]
+  io_summary_pages: [113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124]
   status: draft
-  note: "M1 標的章（決議 #1，2026-09-24 定案）。公式量僅次於 subsystem 1，
-         且一章內兼有公式、常數表與曲線圖，並與 subsystem 1 有重名符號可觸發 scope 解析。"
+  note: "M1 標的章（決議 #1，2026-09-24 定案）。公式量僅次於 subsystem 1， 且一章內兼有公式、常數表與曲線圖，並與
+         subsystem 1 有重名符號可觸發 scope 解析。"
 
 - id: "5"
   name_en: HORIZONTAL STABILIZER AERODYNAMICS
@@ -73,7 +85,7 @@
   pdf_pages: [146, 156]
   printed_pages: ["A-78", "A-88"]
   equation_pages: 5
-  io_summary_pages: [146, 147]
+  io_summary_pages: [146, 147, 148, 149, 150, 151]
   status: draft
 
 - id: "6"
@@ -83,21 +95,32 @@
   pdf_pages: [157, 170]
   printed_pages: ["A-89", "A-102"]
   equation_pages: 7
-  io_summary_pages: [157, 158]
+  io_summary_pages: [157, 158, 159, 160, 161, 162, 163]
   status: draft
 
 - id: "7A"
   name_en: "LANDING GEAR (Present Sigma 8 Model)"
   name_zh: 起落架（現行 Sigma 8 模型）
   appendix: A
-  pdf_pages: [171, 190]
-  printed_pages: ["A-103", "A-122"]
+  pdf_pages: [171, 184]
+  printed_pages: ["A-103", "A-116"]
   equation_pages: 5
-  io_summary_pages: [171]
+  io_summary_pages: [171, 172, 173, 174, 175]
   status: draft
   issues:
     - kind: undefined_in_source
-      note: "原文標題作 `7A ... *`，星號與但書所指為何、是否另有 7B，原文未於該頁說明。"
+      note: "原文標題作 `7A ... *`，星號與但書所指為何，原文未於該頁說明。（原併記之「是否另有 7B」已於 2026-09-25
+            確認存在，見本檔檔首）"
+
+- id: "7B"
+  name_en: "LANDING GEAR (Unused Bell Model)"
+  name_zh: 起落架（未使用之 Bell 模型）
+  appendix: A
+  pdf_pages: [185, 190]
+  printed_pages: ["A-117", "A-122"]
+  equation_pages: 3
+  io_summary_pages: [185, 186, 187]
+  status: draft
 
 - id: "8a"
   name_en: CONTROLS
@@ -106,7 +129,7 @@
   pdf_pages: [191, 201]
   printed_pages: ["A-123", "A-133"]
   equation_pages: 3
-  io_summary_pages: [191, 192]
+  io_summary_pages: [191, 192, 193, 194, 195, 196]
   status: draft
 
 - id: "8b"
@@ -116,7 +139,7 @@
   pdf_pages: [202, 207]
   printed_pages: ["A-134", "A-139"]
   equation_pages: 0
-  io_summary_pages: [202]
+  io_summary_pages: [202, 203, 204, 205]
   status: draft
 
 - id: "8c"
@@ -126,7 +149,7 @@
   pdf_pages: [208, 211]
   printed_pages: ["A-140", "A-143"]
   equation_pages: 0
-  io_summary_pages: [208]
+  io_summary_pages: [208, 209, 210]
   status: draft
 
 - id: "8d"
@@ -136,11 +159,10 @@
   pdf_pages: [212, 232]
   printed_pages: ["A-144", "A-164"]
   equation_pages: 0
-  io_summary_pages: [212]
+  io_summary_pages: [212, 213, 214]
   status: draft
-  note: "後段（pdf 217–232）為 SCAS／FFS／轉速調速器面板開關說明與失效邏輯，
-         頁首為 `SUBSYSTEM CONTROLS AND FAILURE LOGIC`，圖號為 A8d-1 – A8d-4。
-         本區塊無公式頁。"
+  note: "後段（pdf 217–232）為 SCAS／FFS／轉速調速器面板開關說明與失效邏輯， 頁首為 `SUBSYSTEM CONTROLS AND
+         FAILURE LOGIC`，圖號為 A8d-1 – A8d-4。 本區塊無公式頁。"
 
 - id: "9"
   name_en: CG AND INERTIA
@@ -149,7 +171,7 @@
   pdf_pages: [233, 239]
   printed_pages: ["A-165", "A-171"]
   equation_pages: 3
-  io_summary_pages: [233]
+  io_summary_pages: [233, 234, 235, 236]
   status: draft
 
 - id: "10a"
@@ -159,7 +181,7 @@
   pdf_pages: [240, 252]
   printed_pages: ["A-172", "A-184"]
   equation_pages: 5
-  io_summary_pages: [240, 241, 242]
+  io_summary_pages: [240, 241, 242, 243, 244, 245, 246, 247]
   status: draft
 
 - id: "10b"
@@ -169,7 +191,7 @@
   pdf_pages: [253, 256]
   printed_pages: ["A-185", "A-188"]
   equation_pages: 1
-  io_summary_pages: [253]
+  io_summary_pages: [253, 254, 255]
   status: draft
 
 - id: "10c"
@@ -179,7 +201,7 @@
   pdf_pages: [257, 259]
   printed_pages: ["A-189", "A-191"]
   equation_pages: 0
-  io_summary_pages: [257]
+  io_summary_pages: [257, 258]
   status: draft
 
 - id: "10d"
@@ -189,17 +211,27 @@
   pdf_pages: [260, 262]
   printed_pages: ["A-192", "A-194"]
   equation_pages: 0
-  io_summary_pages: [260]
+  io_summary_pages: [260, 261]
   status: draft
 
 - id: "10e"
   name_en: "AXES TRANSFORMATION (GROUND VELOCITY SUMMATION)"
   name_zh: 座標轉換（地速合成）
   appendix: A
-  pdf_pages: [263, 269]
-  printed_pages: ["A-195", "A-201"]
+  pdf_pages: [263, 265]
+  printed_pages: ["A-195", "A-197"]
   equation_pages: 1
-  io_summary_pages: [263]
+  io_summary_pages: [263, 264]
+  status: draft
+
+- id: "10f"
+  name_en: "AXES TRANSFORMATION (GROUND REFERENCE DISTANCES)"
+  name_zh: 軸系轉換（地面參考距離）
+  appendix: A
+  pdf_pages: [266, 269]
+  printed_pages: ["A-198", "A-201"]
+  equation_pages: 1
+  io_summary_pages: [266, 267, 268]
   status: draft
 
 - id: "11"
@@ -209,7 +241,7 @@
   pdf_pages: [270, 277]
   printed_pages: ["A-202", "A-209"]
   equation_pages: 2
-  io_summary_pages: [270, 271]
+  io_summary_pages: [270, 271, 272, 273, 274]
   status: draft
 
 - id: "12"
@@ -219,7 +251,7 @@
   pdf_pages: [278, 284]
   printed_pages: ["A-210", "A-216"]
   equation_pages: 2
-  io_summary_pages: [278, 279]
+  io_summary_pages: [278, 279, 280, 281, 282]
   status: draft
 
 - id: "13"
@@ -229,7 +261,7 @@
   pdf_pages: [285, 289]
   printed_pages: ["A-217", "A-221"]
   equation_pages: 1
-  io_summary_pages: [285, 286]
+  io_summary_pages: [285, 286, 287, 288]
   status: draft
 
 - id: "14"
@@ -239,7 +271,7 @@
   pdf_pages: [290, 302]
   printed_pages: ["A-222", "A-234"]
   equation_pages: 4
-  io_summary_pages: [290, 291, 292]
+  io_summary_pages: [290, 291, 292, 293, 294, 295, 296, 297, 298]
   status: draft
 
 - id: "15"
@@ -249,7 +281,7 @@
   pdf_pages: [303, 306]
   printed_pages: ["A-235", "A-238"]
   equation_pages: 2
-  io_summary_pages: [303]
+  io_summary_pages: [303, 304]
   status: draft
 
 - id: "16"
@@ -259,7 +291,7 @@
   pdf_pages: [307, 314]
   printed_pages: ["A-239", "A-246"]
   equation_pages: 0
-  io_summary_pages: [307, 308]
+  io_summary_pages: [307, 308, 309, 310, 311]
   status: draft
 
 - id: "17"
@@ -269,7 +301,7 @@
   pdf_pages: [315, 323]
   printed_pages: ["A-247", "A-255"]
   equation_pages: 5
-  io_summary_pages: [315]
+  io_summary_pages: [315, 316, 317]
   status: draft
 
 - id: "18"
@@ -279,7 +311,7 @@
   pdf_pages: [324, 335]
   printed_pages: ["A-256", "A-267"]
   equation_pages: 3
-  io_summary_pages: [324, 325]
+  io_summary_pages: [324, 325, 326, 327, 328, 329]
   status: draft
 
 - id: "19"
@@ -289,7 +321,7 @@
   pdf_pages: [336, 339]
   printed_pages: ["A-268", "A-271"]
   equation_pages: 2
-  io_summary_pages: [336]
+  io_summary_pages: [336, 337]
   status: draft
 
 - id: "20"
@@ -299,7 +331,7 @@
   pdf_pages: [340, 350]
   printed_pages: ["A-272", "A-282"]
   equation_pages: 3
-  io_summary_pages: [340, 341]
+  io_summary_pages: [340, 341, 342, 343, 344]
   status: draft
   issues:
     - kind: undefined_in_source
